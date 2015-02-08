@@ -1,12 +1,17 @@
 // Keypad Input Validation Using State Machine Programming
 // Author: Tony Keith
-// Description: Input Validation Example
+//
+// Description: Keypad Input Validation Example
+//  Input Device - This code uses a 16 button keypad as the input.
+//  Output Device - 4 X 20 LCD display
+//
+// See http://statemachineprogramming.blogspot.com/ for full details about code and project.
 
 #include <LiquidCrystal_I2C.h>
 #include <Keypad.h>
 #include <Wire.h>
 
-// Comment out for Serial debug
+// Comment out to turn Serial debug OFF
 #define SERIAL_DEBUG_ENABLED
 
 // States
@@ -22,6 +27,7 @@
 #define EXECUTE       10
 #define CLEAR         11
 
+// 16 button keypad
 const byte ROWS = 4; // define four rows
 const byte COLS = 4; // define four
 char keys [ROWS] [COLS] = {
@@ -39,7 +45,7 @@ char keys [ROWS] [COLS] = {
 // * = : (colon)
 // # = Execute (accept or enter or execute) the command
 
-// 4x4 membrane keypad
+// 4x4 16 button - membrane keypad
 // Pin  R/C Port
 // 8    C4  13
 // 7    C3  12
@@ -59,6 +65,7 @@ byte colPins [COLS] = {10,11,12,13};
 // Call the function library function Keypad
 Keypad keypad = Keypad (makeKeymap (keys), rowPins, colPins, ROWS, COLS);
 
+// Initialize the display
 LiquidCrystal_I2C lcd(0x3F,20,4);
 
 #define MAXCMDBUFFER  15
@@ -81,7 +88,7 @@ void setup () {
   Serial.begin (9600);
 #endif
 
-}
+} // setup()
 
 void loop () {
   
@@ -212,6 +219,7 @@ void loop () {
   } // if 
 } // loop    
 
+
 // Clears resets everything
 void clearAll(void) {
   buffer[0] = '\0';
@@ -219,7 +227,7 @@ void clearAll(void) {
   pos=0;
   state = INITIAL;
   clearDisplay();
-}
+} // clearAll()
 
 // Clear the Cmd and execute area of the display
 void clearDisplay(void) {
@@ -227,7 +235,7 @@ void clearDisplay(void) {
   lcd.print("                    ");
   lcd.setCursor(0,3);
   lcd.print("                    ");
-}
+} // clearDisplay()
 
 // Display format error
 void invalidFormat(void) {
@@ -239,7 +247,8 @@ void invalidFormat(void) {
   delay(1000); 
   lcd.setCursor(0,3);
   lcd.print("               ");
-}
+} // invalidFormat()
+
 // executeCmd
 void executeCmd(void) {
   lcd.setCursor(0,3);
@@ -253,17 +262,19 @@ int displayKey(char key, int pos) {
   lcd.print(key);
   pos++;
   return(pos);
-}
+} // displayKey()
+
 // Store key in buffer
 void storeKey(char key) {
   buffer[index] = key;
   index++;
-}
+} // storeKey()
+
 // Clear buffer
 void clearBuffer(void) {
   buffer[0] = '\0';
   index=0;
-}
+} // clearBuffer()
 
 // Display state name
 void displayState(int state) {
@@ -308,7 +319,7 @@ void displayState(int state) {
   Serial.print("State:");
   Serial.println(stateName);
 #endif
-}
+} // displayState()
 
 // Validate keys: : (colon)
 // return true if valid, else false
@@ -320,7 +331,8 @@ int validColon(int key) {
     break;
   }
   return valid;
-}
+} // validColon()
+
 // Validate keys: @ (at sign)
 // return true if valid, else false
 int validAtSign(int key) {
@@ -331,7 +343,8 @@ int validAtSign(int key) {
     break;
   }
   return valid;
-}
+} // validAtSign()
+
 // Validate keys: # (pound sign)
 // return true if valid, else false
 int validPoundSign(int key) {
@@ -362,7 +375,7 @@ int validKeys0to9(int key) {
     break;
   }
   return valid;
-}
+} // validKey0to9()
 
 // Validate keys: 0-5
 // return true if valid, else false
@@ -379,6 +392,6 @@ int validKeys0to5(int key) {
     break;
   }
   return valid;
-}
+} // validKey0to5()
 
 // END OF FILE
