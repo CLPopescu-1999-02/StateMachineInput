@@ -13,11 +13,13 @@ perform validation on the commands as each character is typed.
 
 It can be any project that accepts and processes characters one at a time (serial or keypad).
 
+## Additional Information
+
 See http://statemachineprogramming.blogspot.com/ for the original article and full details about the code and project.
 
 ## Project Directory Structure
 
-StateMachineInput
-  README.md - Readme File
-  source -> StateMachineInput.c - Contains a copy of the source code file from IDE.
-  StateMachineInput.ino - Arduino IDE file
+  StateMachineInput
+    README.md - Readme File
+    source -> StateMachineInput.c - Contains a copy of the source code file from IDE.
+    StateMachineInput.ino - Arduino IDE file
