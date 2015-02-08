@@ -15,9 +15,9 @@ It can be any project that accepts and processes characters one at a time (seria
 
 See http://statemachineprogramming.blogspot.com/ for the original article and full details about the code and project.
 
-# Project Directory Structure
+## Project Directory Structure
 
 StateMachineInput
-->README.md - Readme File
-->source -> StateMachineInput.c - Contains a copy of the source code file from IDE.
-->StateMachineInput.ino - Arduino IDE file
+  README.md - Readme File
+  source -> StateMachineInput.c - Contains a copy of the source code file from IDE.
+  StateMachineInput.ino - Arduino IDE file
