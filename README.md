@@ -18,6 +18,6 @@ See http://statemachineprogramming.blogspot.com/ for the original article and fu
 Project Directory Structure:
 
 StateMachineInput
-    READMEmd -> Readme File
-	source -> Contains a copy of the source code file from IDE.
-	StateMachineInput.ino -> Arduino
+->README.md - Readme File
+->source -> StateMachineInput.c - Contains a copy of the source code file from IDE.
+->StateMachineInput.ino - Arduino IDE file
