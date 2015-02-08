@@ -22,5 +22,5 @@ See http://statemachineprogramming.blogspot.com/ for the original article and fu
    * StateMachineInput
     * README.md - Readme File
     * source
-      *StateMachineInput.c - Contains a copy of the source code file from IDE.
+      * StateMachineInput.c - Contains a copy of the source code file from IDE.
     * StateMachineInput.ino - Arduino IDE file
